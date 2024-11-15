@@ -3,25 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restaurante Sabores del Mundo</title>
+    <title>Punto de Venta - Restaurante</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<div class="post-container">
-    <div class="post-image">
-        <img src="plato.jpg" alt="Imagen del plato especial"> <!-- Asegúrate de tener esta imagen en el mismo directorio -->
+<div class="pos-container">
+    <!-- Sección de productos -->
+    <div class="product-section">
+        <h2>Productos</h2>
+        <div class="product-list">
+            <div class="product">
+                <p>Producto 1</p>
+                <button class="add-to-cart">Agregar</button>
+            </div>
+            <div class="product">
+                <p>Producto 2</p>
+                <button class="add-to-cart">Agregar</button>
+            </div>
+            <div class="product">
+                <p>Producto 3</p>
+                <button class="add-to-cart">Agregar</button>
+            </div>
+        </div>
     </div>
-    <h1 class="post-title">Restaurante Sabores del Mundo</h1>
-    <p class="post-description">
-        Disfruta de una experiencia culinaria única en Sabores del Mundo, donde encontrarás platillos exquisitos de diferentes partes del planeta.
-    </p>
-    
-    <div class="post-info">
-        <p><strong>Dirección:</strong> Calle 123, Ciudad XYZ</p>
-        <p><strong>Horarios:</strong> Lunes a Domingo: 10:00 AM - 10:00 PM</p>
+
+    <!-- Sección de carrito -->
+    <div class="cart-section">
+        <h2>Carrito</h2>
+        <div class="cart-list">
+            <!-- Aquí se agregarán los productos seleccionados -->
+        </div>
+        <div class="cart-total">
+            <p>Total: <span id="total-amount">$0.00</span></p>
+        </div>
+        <button class="checkout-btn">Finalizar Venta</button>
     </div>
 </div>
 
+<script src="script.js"></script>
 </body>
 </html>
