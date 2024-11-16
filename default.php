@@ -38,7 +38,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="Pos.php" class="nav-link">
+                        <a href="pos.php" class="nav-link">
                             <i class="nav-icon fas fa-utensils"></i>
                             <p>Punto de Venta</p>
                         </a>
