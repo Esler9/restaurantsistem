@@ -38,7 +38,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="Pos.php" class="nav-link">
+                        <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-utensils"></i>
                             <p>Punto de Venta</p>
                         </a>
@@ -74,30 +74,28 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Menú de Productos</h3>
-                            </div>
-                            <div class="card-body">
-                                <div id="product-list" class="row">
-                                    <!-- Productos generados dinámicamente -->
+                                <div class="card-tools">
+                                    <input type="text" id="search-box" class="form-control form-control-sm" placeholder="Buscar productos...">
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Carrito</h3>
-                            </div>
                             <div class="card-body">
-                                <ul id="cart-list" class="list-group"></ul>
-                                <div class="d-flex justify-content-between mt-3">
-                                    <strong>Total:</strong>
-                                    <span id="total-amount">$0.00</span>
-                                </div>
-                                <button id="checkout-btn" class="btn btn-success btn-block mt-3">Finalizar Venta</button>
+                                <table class="table table-striped" id="product-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Nombre</th>
+                                            <th>Precio</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="product-list">
+                                        <!-- Productos generados dinámicamente -->
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -109,6 +107,6 @@
 <!-- Scripts -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
-<script src="script.js"></script>
+<script src="scriptpos.js"></script>
 </body>
 </html>
