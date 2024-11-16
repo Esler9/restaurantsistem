@@ -1,49 +1,38 @@
-// Productos de ejemplo
-const products = [
-    { id: 1, name: "Hamburguesa", price: 50 },
-    { id: 2, name: "Papas Fritas", price: 20 },
-    { id: 3, name: "Refresco", price: 15 },
-    { id: 4, name: "Pizza", price: 80 },
-    { id: 5, name: "Ensalada", price: 30 },
-    { id: 6, name: "Pollo Frito", price: 70 },
-    { id: 7, name: "Tacos", price: 25 },
-    { id: 8, name: "Sopa", price: 40 },
-    { id: 9, name: "Cerveza", price: 20 },
-    { id: 10, name: "Helado", price: 15 }
-];
+$(document).ready(function () {
+    // Agregar producto a la lista de productos seleccionados
+    $(document).on('click', '.add-product', function() {
+        const productId = $(this).data('id');
+        const productName = $(this).data('name');
+        const productPrice = $(this).data('price');
 
-// Renderizar productos en tabla
-const productList = document.getElementById("product-list");
-products.forEach(product => {
-    const row = document.createElement("tr");
-    row.innerHTML = `
-        <td>${product.id}</td>
-        <td>${product.name}</td>
-        <td>$${product.price}</td>
-        <td>
-            <button class="btn btn-primary btn-sm" onclick="addToCart(${product.id})">Agregar</button>
-        </td>
-    `;
-    productList.appendChild(row);
-});
+        // Añadir el producto seleccionado a la tabla de productos seleccionados
+        $('#selected-products-list').append(`
+            <tr data-id="${productId}">
+                <td>${productName}</td>
+                <td>$${productPrice}</td>
+                <td><button class="btn btn-danger btn-sm remove-product">Eliminar</button></td>
+            </tr>
+        `);
+    });
 
-// Buscar productos en la tabla
-document.getElementById("search-box").addEventListener("keyup", function () {
-    const searchValue = this.value.toLowerCase();
-    const rows = document.querySelectorAll("#product-table tbody tr");
-    rows.forEach(row => {
-        const productName = row.children[1].textContent.toLowerCase();
-        row.style.display = productName.includes(searchValue) ? "" : "none";
+    // Eliminar producto de la lista de productos seleccionados
+    $(document).on('click', '.remove-product', function() {
+        $(this).closest('tr').remove();
+    });
+
+    // Finalizar pedido (acción de ejemplo)
+    $('#finish-order').on('click', function() {
+        const selectedProducts = [];
+        $('#selected-products-list tr').each(function() {
+            const name = $(this).find('td').eq(0).text();
+            const price = $(this).find('td').eq(1).text();
+            selectedProducts.push({ name, price });
+        });
+
+        if (selectedProducts.length > 0) {
+            alert('Pedido Finalizado\n' + JSON.stringify(selectedProducts, null, 2));
+        } else {
+            alert('No se ha seleccionado ningún producto.');
+        }
     });
 });
-
-// Carrito de compras
-let cart = [];
-let total = 0;
-
-function addToCart(productId) {
-    const product = products.find(p => p.id === productId);
-    cart.push(product);
-    total += product.price;
-    alert(`Producto "${product.name}" agregado al carrito. Total: $${total}`);
-}

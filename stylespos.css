@@ -1,17 +1,47 @@
-/* Personalización del Sidebar */
-.nav-sidebar .nav-link.active {
-    background-color: #28a745;
+/* Estilo para el contenedor principal */
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/* Asegurar que la tabla ocupe todo el ancho */
+.card-body {
+    overflow-x: auto;
+}
+
+/* Mejorar el aspecto de las tablas */
+.table-striped tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+.table th, .table td {
+    text-align: center;
+}
+
+.table th {
+    background-color: #343a40;
     color: #fff;
 }
 
-.nav-sidebar .nav-link:hover {
-    background-color: #218838;
-    color: #fff;
+/* Botón de Finalizar Pedido */
+#finish-order {
+    margin-top: 15px;
 }
 
-/* Ajustes generales */
-.card-tools input {
-    width: 200px;
-    display: inline-block;
-    margin-left: 10px;
+/* Estilo para las tarjetas */
+.card {
+    margin-bottom: 20px;
+}
+
+/* Mejorar la apariencia del navbar */
+.navbar-text {
+    font-weight: bold;
+}
+
+/* Asegurar que el sidebar sea fijo */
+.main-sidebar {
+    position: fixed;
+    height: 100%;
+    width: 250px;
 }

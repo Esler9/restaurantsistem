@@ -6,6 +6,7 @@
     <title>Punto de Venta | Restaurante</title>
     <!-- AdminLTE -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+    <!-- Estilos personalizados -->
     <link rel="stylesheet" href="styles.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -84,7 +85,6 @@
                                         </tr>
                                     </thead>
                                     <tbody id="product-list">
-                                        <!-- Productos generados dinámicamente -->
                                         <tr>
                                             <td>1</td>
                                             <td>Hamburguesa</td>
@@ -97,7 +97,6 @@
                                             <td>$75.00</td>
                                             <td><button class="btn btn-success btn-sm add-product" data-id="2" data-name="Pizza" data-price="75">Agregar</button></td>
                                         </tr>
-                                        <!-- Más productos se agregarían aquí -->
                                     </tbody>
                                 </table>
                             </div>
@@ -120,7 +119,6 @@
                                         </tr>
                                     </thead>
                                     <tbody id="selected-products-list">
-                                        <!-- Productos seleccionados se agregarán aquí -->
                                     </tbody>
                                 </table>
                                 <button id="finish-order" class="btn btn-primary btn-block">Finalizar Pedido</button>
@@ -138,43 +136,5 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
 <script src="script.js"></script>
-<script>
-    // Agregar producto a la lista de productos seleccionados
-    $(document).on('click', '.add-product', function() {
-        const productId = $(this).data('id');
-        const productName = $(this).data('name');
-        const productPrice = $(this).data('price');
-
-        // Añadir el producto seleccionado a la tabla de productos seleccionados
-        $('#selected-products-list').append(`
-            <tr data-id="${productId}">
-                <td>${productName}</td>
-                <td>$${productPrice}</td>
-                <td><button class="btn btn-danger btn-sm remove-product">Eliminar</button></td>
-            </tr>
-        `);
-    });
-
-    // Eliminar producto de la lista de productos seleccionados
-    $(document).on('click', '.remove-product', function() {
-        $(this).closest('tr').remove();
-    });
-
-    // Finalizar pedido (acción de ejemplo)
-    $('#finish-order').on('click', function() {
-        const selectedProducts = [];
-        $('#selected-products-list tr').each(function() {
-            const name = $(this).find('td').eq(0).text();
-            const price = $(this).find('td').eq(1).text();
-            selectedProducts.push({ name, price });
-        });
-
-        if (selectedProducts.length > 0) {
-            alert('Pedido Finalizado\n' + JSON.stringify(selectedProducts, null, 2));
-        } else {
-            alert('No se ha seleccionado ningún producto.');
-        }
-    });
-</script>
 </body>
 </html>
