@@ -14,7 +14,7 @@ let total = 0;
 const productList = document.getElementById("product-list");
 products.forEach(product => {
     const productItem = document.createElement("div");
-    productItem.className = "list-group-item";
+    productItem.className = "product-item col-md-12";
     productItem.innerHTML = `
         <span>${product.name} - $${product.price}</span>
         <button class="btn btn-primary btn-sm" onclick="addToCart(${product.id})">Agregar</button>
