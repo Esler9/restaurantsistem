@@ -7,7 +7,20 @@
     <link rel="stylesheet" href="/dist/css/style.css">
 </head>
 <body>
-    <h1><?= $data['mensaje'] ?></h1>
-    <p>Este es el inicio del sistema utilizando el modelo MVC.</p>
+    <header>
+        <h1>Sistema de Inventario</h1>
+    </header>
+    <main>
+        <h1><?= $data['mensaje'] ?></h1>
+        <p>Bienvenido al sistema de inventario. Administre sus productos, revise existencias y optimice su restaurante.</p>
+        <div>
+            <a href="/dist/productos" class="button">Gestión de Productos</a>
+            <a href="/dist/ventas" class="button">Gestión de Ventas</a>
+            <a href="/dist/inventario" class="button">Ver Inventario</a>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; <?= date('Y'); ?> Sistema de Inventario. Todos los derechos reservados.</p>
+    </footer>
 </body>
 </html>
