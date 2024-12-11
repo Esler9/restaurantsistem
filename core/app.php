@@ -1,22 +1,22 @@
 <?php
 class app {
-    protected $controller = 'homecontroller';
-    protected $method = 'index';
-    protected $params = [];
+    protected $controller = 'homecontroller'; // Controlador predeterminado
+    protected $method = 'index'; // Método predeterminado
+    protected $params = []; // Parámetros de la URL
 
     public function __construct() {
         $url = $this->parseUrl();
 
-        // verificar si el controlador existe
-        if (file_exists('../app/controllers/' . $url[0] . 'controller.php')) {
+        // Verificar si el controlador existe
+        if (file_exists('app/controllers/' . $url[0] . 'controller.php')) {
             $this->controller = $url[0] . 'controller';
             unset($url[0]);
         }
 
-        require_once '../app/controllers/' . $this->controller . '.php';
+        require_once 'app/controllers/' . $this->controller . '.php';
         $this->controller = new $this->controller;
 
-        // verificar si el método existe
+        // Verificar si el método existe
         if (isset($url[1]) && method_exists($this->controller, $url[1])) {
             $this->method = $url[1];
             unset($url[1]);
