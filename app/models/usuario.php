@@ -36,5 +36,26 @@ class usuario {
         $stmt->execute(['id_usuario' => $id_usuario]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    
+    // Actualiza el Usuario
+    public function actualizar($id_usuario, $nombre, $correo, $rol) {
+        $sql = "UPDATE usuarios SET nombre = :nombre, correo = :correo, rol = :rol WHERE id_usuario = :id_usuario";
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute([
+            'id_usuario' => $id_usuario,
+            'nombre' => $nombre,
+            'correo' => $correo,
+            'rol' => $rol
+        ]);
+    }
+
+    // Listar todos los usuarios
+    public function listar() {
+        $sql = "SELECT * FROM usuarios";
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    
 }
 ?>
