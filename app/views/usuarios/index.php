@@ -80,7 +80,7 @@
         <div class="modal fade" id="crearUsuarioModal" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="/usuarios/crear" method="GET">
+                    <form action="/usuarios/crear" method="POST">
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label for="nombre" class="form-label">Nombre</label>
