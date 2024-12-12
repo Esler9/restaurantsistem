@@ -10,17 +10,29 @@ class usuarioscontroller extends controller {
     // Crear un nuevo usuario
     public function crear() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $nombre = $_POST['nombre'];
-            $correo = $_POST['correo'];
-            $rol = $_POST['rol'];
-            $contraseña = $_POST['contraseña'];
-
+            $nombre = trim($_POST['nombre']);
+            $correo = trim($_POST['correo']);
+            $rol = trim($_POST['rol']);
+            $contraseña = trim($_POST['contraseña']);
+    
+            // Validar que los campos no estén vacíos
+            if (empty($nombre) || empty($correo) || empty($rol) || empty($contraseña)) {
+                die('Todos los campos son obligatorios.');
+            }
+    
+            // Llamar al modelo para registrar el usuario
             $usuarioModel = $this->model('usuario');
-            $usuarioModel->registrar($nombre, $correo, $contraseña, $rol);
-            header('Location: /usuarios');
-            exit;
+            $registrado = $usuarioModel->registrar($nombre, $correo, $contraseña, $rol);
+    
+            if ($registrado) {
+                header('Location: /usuarios'); // Redirigir a la lista de usuarios
+                exit;
+            } else {
+                die('Error al registrar el usuario.');
+            }
         }
     }
+    
 
     // Actualizar un usuario existente
     public function actualizar() {
