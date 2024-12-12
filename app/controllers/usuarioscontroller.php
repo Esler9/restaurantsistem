@@ -9,9 +9,8 @@ class usuarioscontroller extends controller {
 
     // Crear un nuevo usuario
     public function crear() {
-        echo "hola";
-        echo $_POST['correo'];
-        echo $_GET['correo'];
+        var_dump($_POST);
+        exit;
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $nombre = trim($_POST['nombre']);
             $correo = trim($_POST['correo']);
