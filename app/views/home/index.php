@@ -15,8 +15,8 @@
         <p>Bienvenido al sistema de inventario. Administre sus productos, revise existencias y optimice su restaurante.</p>
         <div>
             <a href="login" class="button">Gestión de Productos</a>
-            <a href="/dist/ventas" class="button">Gestión de Ventas</a>
-            <a href="/dist/inventario" class="button">Ver Inventario</a>
+            <a href="ventas" class="button">Gestión de Ventas</a>
+            <a href="inventario" class="button">Ver Inventario</a>
         </div>
     </main>
     <footer>
