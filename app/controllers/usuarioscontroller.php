@@ -10,12 +10,13 @@ class usuarioscontroller extends controller {
     // Crear un nuevo usuario
     public function crear() {
         echo "hola";
+        echo $_POST['nombre'];
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $nombre = trim($_POST['nombre']);
             $correo = trim($_POST['correo']);
             $rol = trim($_POST['rol']);
             $contraseña = trim($_POST['contraseña']);
-    echo $contraseña;
+    
             // Validar que los campos no estén vacíos
             if (empty($nombre) || empty($correo) || empty($rol) || empty($contraseña)) {
                 die('Todos los campos son obligatorios.');
