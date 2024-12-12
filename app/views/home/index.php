@@ -14,7 +14,7 @@
         <h1><?= $data['mensaje'] ?></h1>
         <p>Bienvenido al sistema de inventario. Administre sus productos, revise existencias y optimice su restaurante.</p>
         <div>
-            <a href="/dist/productos" class="button">Gestión de Productos</a>
+            <a href="login" class="button">Gestión de Productos</a>
             <a href="/dist/ventas" class="button">Gestión de Ventas</a>
             <a href="/dist/inventario" class="button">Ver Inventario</a>
         </div>
