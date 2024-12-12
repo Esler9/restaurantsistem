@@ -10,12 +10,17 @@ class usuario {
 
     // Registrar un nuevo usuario
     public function registrar($nombre, $correo, $contraseña, $rol) {
-        $hashedPassword = password_hash($contraseña, PASSWORD_DEFAULT);
+        $hashedPassword = password_hash($contraseña, PASSWORD_DEFAULT); // Hashear contraseña
         $sql = "INSERT INTO usuarios (nombre, correo, contraseña, rol) VALUES (:nombre, :correo, :contraseña, :rol)";
         $stmt = $this->db->prepare($sql);
-        return $stmt->execute(['nombre' => $nombre, 'correo' => $correo, 'contraseña' => $hashedPassword, 'rol' => $rol]);
+        return $stmt->execute([
+            'nombre' => $nombre,
+            'correo' => $correo,
+            'contraseña' => $hashedPassword,
+            'rol' => $rol
+        ]);
     }
-
+    
     // Autenticar un usuario
     public function autenticar($correo, $contraseña) {
         $sql = "SELECT * FROM usuarios WHERE correo = :correo";
@@ -36,7 +41,7 @@ class usuario {
         $stmt->execute(['id_usuario' => $id_usuario]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-    
+
     // Actualiza el Usuario
     public function actualizar($id_usuario, $nombre, $correo, $rol) {
         $sql = "UPDATE usuarios SET nombre = :nombre, correo = :correo, rol = :rol WHERE id_usuario = :id_usuario";
