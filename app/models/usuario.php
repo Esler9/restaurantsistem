@@ -11,31 +11,35 @@ class usuario {
     // Registrar un nuevo usuario
     public function registrar($nombre, $correo, $contraseña, $rol) {
         try {
-            // Encriptar contraseña
+            // Encriptar la contraseña
             $hashedPassword = password_hash($contraseña, PASSWORD_BCRYPT);
     
             // Consulta SQL
             $sql = "INSERT INTO usuarios (nombre, correo, contraseña, rol) VALUES (:nombre, :correo, :contraseña, :rol)";
             $stmt = $this->db->prepare($sql);
     
-            // Ejecutar la consulta
-            $stmt->bindParam(':nombre', $nombre, PDO::PARAM_STR);
-            $stmt->bindParam(':correo', $correo, PDO::PARAM_STR);
-            $stmt->bindParam(':contraseña', $hashedPassword, PDO::PARAM_STR);
-            $stmt->bindParam(':rol', $rol, PDO::PARAM_STR);
+            // Validar datos antes de ejecutar
+            if (empty($nombre) || empty($correo) || empty($rol) || empty($hashedPassword)) {
+                throw new Exception('Faltan datos para el registro del usuario.');
+            }
     
-            if (!$stmt->execute()) {
-                // Capturar error de SQL
+            // Ejecutar consulta
+            if (!$stmt->execute([
+                ':nombre' => $nombre,
+                ':correo' => $correo,
+                ':contraseña' => $hashedPassword,
+                ':rol' => $rol
+            ])) {
                 $errorInfo = $stmt->errorInfo();
                 throw new Exception('Error en SQL: ' . $errorInfo[2]);
             }
     
             return true;
         } catch (Exception $e) {
-            // Manejo de errores
             die('Error al registrar usuario: ' . $e->getMessage());
         }
     }
+    
     
     
     
