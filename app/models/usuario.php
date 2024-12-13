@@ -10,15 +10,33 @@ class usuario {
 
     // Registrar un nuevo usuario
     public function registrar($nombre, $correo, $contraseña, $rol) {
-        $hashedPassword = password_hash($contraseña, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO usuarios (nombre, correo, contraseña, rol) VALUES (:nombre, :correo, :contraseña, :rol)";
-        $stmt = $this->db->prepare($sql);
+        try {
+            // Encriptar contraseña
+            $hashedPassword = password_hash($contraseña, PASSWORD_BCRYPT);
     
-        if (!$stmt->execute(['nombre' => $nombre, 'correo' => $correo, 'contraseña' => $hashedPassword, 'rol' => $rol])) {
-            die('Error en SQL: ' . implode(', ', $stmt->errorInfo()));
+            // Consulta SQL
+            $sql = "INSERT INTO usuarios (nombre, correo, contraseña, rol) VALUES (:nombre, :correo, :contraseña, :rol)";
+            $stmt = $this->db->prepare($sql);
+    
+            // Ejecutar la consulta
+            $stmt->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+            $stmt->bindParam(':correo', $correo, PDO::PARAM_STR);
+            $stmt->bindParam(':contraseña', $hashedPassword, PDO::PARAM_STR);
+            $stmt->bindParam(':rol', $rol, PDO::PARAM_STR);
+    
+            if (!$stmt->execute()) {
+                // Capturar error de SQL
+                $errorInfo = $stmt->errorInfo();
+                throw new Exception('Error en SQL: ' . $errorInfo[2]);
+            }
+    
+            return true;
+        } catch (Exception $e) {
+            // Manejo de errores
+            die('Error al registrar usuario: ' . $e->getMessage());
         }
-        return true;
     }
+    
     
     
     // Autenticar un usuario

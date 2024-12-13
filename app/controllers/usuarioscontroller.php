@@ -24,8 +24,7 @@ class usuarioscontroller extends controller {
             // Llamar al modelo para registrar el usuario
             $usuarioModel = $this->model('usuario');
             $registrado = $usuarioModel->registrar($nombre, $correo, $contraseña, $rol);
-            var_dump($_POST);
-            exit;
+            
             if ($registrado) {
                 header('Location: /usuarios'); // Redirigir a la lista de usuarios
                 exit;
