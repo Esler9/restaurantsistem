@@ -57,3 +57,20 @@ footer {
     width: 100%;
     text-align: center;
 }
+
+.main-sidebar {
+    background-color: #343a40; /* Cambia el color del fondo */
+}
+
+.nav-sidebar .nav-link {
+    color: #c2c7d0; /* Cambia el color del texto */
+}
+
+.nav-sidebar .nav-link:hover {
+    background-color: #495057; /* Fondo al pasar el ratón */
+    color: #ffffff;
+}
+
+.nav-sidebar .nav-icon {
+    color: #adb5bd; /* Cambia el color de los íconos */
+}
