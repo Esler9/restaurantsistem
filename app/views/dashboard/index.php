@@ -17,7 +17,7 @@
         <?php include __DIR__ . '/../../partials/navbar.php'; ?>
 
         <!-- Menú lateral -->
-        <?php include __DIR__ . '/../../partials/sidebar.php'; ?>
+        <?php include __DIR__ . '../../partials/sidebar.php'; ?>
 
         <!-- Contenido principal -->
         <div class="content-wrapper">
