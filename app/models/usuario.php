@@ -13,40 +13,21 @@ class usuario
     // Registrar un nuevo usuario
     public function registrar($nombre, $correo, $contraseña, $rol)
     {
-        // Encriptar la contraseña
         $hashedPassword = password_hash($contraseña, PASSWORD_BCRYPT);
 
         // Consulta SQL
         $sql = "INSERT INTO usuarios (nombre, correo, contraseña, rol) 
-                VALUES (:nombre, :correo, :contraseña, :rol);";
+                VALUES (:nombre, :correo, :contraseña, :rol)";
 
-        try {
-            // Preparar la consulta
-            $stmt = $this->db->prepare($sql);
-
-            // Ejecutar la consulta con los datos proporcionados
-            $resultado = $stmt->execute([
-                ':nombre' => $nombre,
-                ':correo' => $correo,
-                ':contraseña' => $hashedPassword,
-                ':rol' => $rol
-            ]);
-
-            // Verificar si se ejecutó correctamente
-            if (!$resultado) {
-                throw new Exception('No se pudo registrar el usuario.');
-            }
-
-            return true; // Registro exitoso
-
-        } catch (Exception $e) {
-            // Mostrar el error en caso de que ocurra algo
-            die('Error al registrar usuario: ' . $e->getMessage());
-        }
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute([
+            'contraseña' => $contraseña,
+            'nombre' => $nombre,
+            'correo' => $correo,
+            'rol' => $rol
+        ]);
     }
-
-
-
+    
 
 
     // Autenticar un usuario
