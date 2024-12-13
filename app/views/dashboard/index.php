@@ -14,10 +14,10 @@
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
         <!-- Barra de navegación -->
-        <?php include __DIR__ . '/../../partials/navbar.php'; ?>
+        <?php include __DIR__ . '../../../../partials/navbar.php'; ?>
 
         <!-- Menú lateral -->
-        <?php include __DIR__ . '../../partials/sidebar.php'; ?>
+        <?php include __DIR__ . '../../../../partials/sidebar.php'; ?>
 
         <!-- Contenido principal -->
         <div class="content-wrapper">
