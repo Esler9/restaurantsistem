@@ -17,7 +17,7 @@ class usuario
 
         // Consulta SQL
         $sql = "INSERT INTO usuarios (nombre, correo, contraseña, rol) 
-                VALUES (:nombre, :correo, :contraseña, :rol)";
+                VALUES (':nombre', ':correo', ':contraseña', ':rol')";
             echo "error";
         $stmt = $this->db->prepare($sql);
         return $stmt->execute([
