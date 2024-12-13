@@ -1,6 +1,6 @@
 <?php
 // Validar que la sesión esté activa
-require_once __DIR__ . '../../../../partials/validar_sesion.php';
+//require_once __DIR__ . '../../../../partials/validar_sesion.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
