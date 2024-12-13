@@ -10,16 +10,16 @@ class usuario {
 
     // Registrar un nuevo usuario
     public function registrar($nombre, $correo, $contraseña, $rol) {
-        $hashedPassword = password_hash($contraseña, PASSWORD_DEFAULT); // Hashear contraseña
+        $hashedPassword = password_hash($contraseña, PASSWORD_DEFAULT);
         $sql = "INSERT INTO usuarios (nombre, correo, contraseña, rol) VALUES (:nombre, :correo, :contraseña, :rol)";
         $stmt = $this->db->prepare($sql);
-        return $stmt->execute([
-            'nombre' => $nombre,
-            'correo' => $correo,
-            'contraseña' => $hashedPassword,
-            'rol' => $rol
-        ]);
+    
+        if (!$stmt->execute(['nombre' => $nombre, 'correo' => $correo, 'contraseña' => $hashedPassword, 'rol' => $rol])) {
+            die('Error en SQL: ' . implode(', ', $stmt->errorInfo()));
+        }
+        return true;
     }
+    
     
     // Autenticar un usuario
     public function autenticar($correo, $contraseña) {

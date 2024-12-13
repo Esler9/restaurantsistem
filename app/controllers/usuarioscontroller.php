@@ -15,8 +15,7 @@ class usuarioscontroller extends controller {
             $correo = trim($_POST['correo']);
             $rol = trim($_POST['rol']);
             $contraseña = trim($_POST['contraseña']);
-            var_dump($_POST);
-            exit;
+    
             // Validar que los campos no estén vacíos
             if (empty($nombre) || empty($correo) || empty($rol) || empty($contraseña)) {
                 die('Todos los campos son obligatorios.');
@@ -25,7 +24,8 @@ class usuarioscontroller extends controller {
             // Llamar al modelo para registrar el usuario
             $usuarioModel = $this->model('usuario');
             $registrado = $usuarioModel->registrar($nombre, $correo, $contraseña, $rol);
-    
+            var_dump($_POST);
+            exit;
             if ($registrado) {
                 header('Location: /usuarios'); // Redirigir a la lista de usuarios
                 exit;
