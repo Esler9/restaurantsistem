@@ -14,7 +14,7 @@
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
         <!-- Barra de navegación -->
-        <?php include __DIR__ . '../../../../partials/navbar.php'; ?>
+        <?php include __DIR__ . '/../../../partials/navbar.php'; ?>
 
         <!-- Menú lateral -->
         <?php include __DIR__ . '../../../../partials/sidebar.php'; ?>
@@ -110,7 +110,7 @@
         </div>
 
         <!-- Pie de página -->
-        <?php include __DIR__ . '/../../partials/footer.php'; ?>
+        <?php include __DIR__ . '../../../../partials/footer.php'; ?>
     </div>
     <script src="/dist/js/adminlte.min.js"></script>
 </body>
