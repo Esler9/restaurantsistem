@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+require_once 'validar_sesion.php';
+?>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
