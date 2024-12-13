@@ -1,6 +1,6 @@
 <?php
 class app {
-    protected $controller = 'homecontroller'; // Controlador predeterminado
+    protected $controller = 'dashboardcontroller'; // Controlador predeterminado
     protected $method = 'index'; // Método predeterminado
     protected $params = []; // Parámetros de la URL
 

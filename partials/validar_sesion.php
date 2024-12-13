@@ -9,3 +9,4 @@ if (!isset($_SESSION['usuario'])) {
 
 // Opcional: Verificar roles específicos (si es necesario)
 $usuario = $_SESSION['usuario'];
+?>
