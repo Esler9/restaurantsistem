@@ -10,7 +10,7 @@ class logincontroller extends controller {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $correo = $_POST['correo'];
             $contraseña = $_POST['contraseña'];
-            echo 'funciona 1';
+            
             $usuarioModel = $this->model('usuario');
             $usuario = $usuarioModel->autenticar($correo, $contraseña);
 
