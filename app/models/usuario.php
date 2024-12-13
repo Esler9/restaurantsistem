@@ -18,7 +18,7 @@ class usuario
 
         // Consulta SQL
         $sql = "INSERT INTO usuarios (nombre, correo, contraseña, rol) 
-                VALUES (:nombre, :correo, :contraseña, :rol)";
+                VALUES (:nombre, :correo, :contraseña, :rol);";
 
         try {
             // Preparar la consulta
