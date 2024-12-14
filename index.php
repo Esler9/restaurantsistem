@@ -6,4 +6,4 @@ require_once 'core/controller.php';
 
 // Iniciar la aplicación
 $app = new app();
-?>
+?> 
