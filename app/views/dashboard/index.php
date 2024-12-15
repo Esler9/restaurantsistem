@@ -112,9 +112,6 @@ require_once __DIR__ . '../partials/';
         <!-- Pie de página -->
         <?php include __DIR__ . '../partials/footer.php'; ?>
     </div>
-    <!-- jQuery -->
-    <script src="/dist/plugins/jquery/jquery.min.js"></script>
-    <!-- AdminLTE -->
-    <script src="/dist/js/adminlte.min.js"></script>
+   
 </body>
 </html>
