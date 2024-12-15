@@ -11,7 +11,14 @@ require_once __DIR__ . '../../../../partials/validar_sesion.php';
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
 </head>
 
-<body>
+<body class="hold-transition sidebar-mini" >
+
+<!-- Barra de navegación -->
+<?php include __DIR__ . '/app/partials/navbar.php'; ?>
+
+<!-- Menú lateral -->
+<?php include __DIR__ . '/app/partials/sidebar.php'; ?>
+
     <div class="container mt-5">
         <h1 class="mb-4">Gestión de Usuarios</h1>
         <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#crearUsuarioModal">Nuevo Usuario</button>
