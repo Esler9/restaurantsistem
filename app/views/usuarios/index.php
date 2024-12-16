@@ -4,126 +4,131 @@ require_once __DIR__ . '/../partials/validar_sesion.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Usuarios</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <!-- AdminLTE CSS -->
+    <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/dist/plugins/fontawesome-free/css/all.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="/dist/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/dist/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="/dist/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 </head>
 
-<body class="hold-transition sidebar-mini" >
+<body class="hold-transition sidebar-mini layout-fixed">
 
-<!-- Barra de navegación -->
-<?php include __DIR__ . '/app/partials/navbar.php'; ?>
+    <!-- Barra de navegación -->
+    <?php include __DIR__ . '/../partials/navbar.php'; ?>
 
-<!-- Menú lateral -->
-<?php include __DIR__ . '/app/partials/sidebar.php'; ?>
+    <!-- Menú lateral -->
+    <?php include __DIR__ . '/../partials/sidebar.php'; ?>
 
-    <div class="container mt-5">
-        <h1 class="mb-4">Gestión de Usuarios</h1>
-        <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#crearUsuarioModal">Nuevo Usuario</button>
-
-        <!-- Tabla de usuarios -->
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Correo</th>
-                    <th>Rol</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($data['usuarios'] as $usuario): ?>
-                    <tr>
-                        <td><?= $usuario['id_usuario'] ?></td>
-                        <td><?= $usuario['nombre'] ?></td>
-                        <td><?= $usuario['correo'] ?></td>
-                        <td><?= $usuario['rol'] ?></td>
-                        <td>
-                            <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editarUsuarioModal<?= $usuario['id_usuario'] ?>">Editar</button>
-                        </td>
-                    </tr>
-
-                    <!-- Modal para editar usuario -->
-                    <div class="modal fade" id="editarUsuarioModal<?= $usuario['id_usuario'] ?>" tabindex="-1">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <form action="/usuarios/actualizar" method="POST">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Editar Usuario</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <input type="hidden" name="id_usuario" value="<?= $usuario['id_usuario'] ?>">
-                                        <div class="mb-3">
-                                            <label for="nombre" class="form-label">Nombre</label>
-                                            <input type="text" class="form-control" name="nombre" value="<?= $usuario['nombre'] ?>" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="correo" class="form-label">Correo</label>
-                                            <input type="email" class="form-control" name="correo" value="<?= $usuario['correo'] ?>" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="rol" class="form-label">Rol</label>
-                                            <select class="form-control" name="rol" required>
-                                                <option value="administrador" <?= $usuario['rol'] == 'administrador' ? 'selected' : '' ?>>Administrador</option>
-                                                <option value="mesero" <?= $usuario['rol'] == 'mesero' ? 'selected' : '' ?>>Mesero</option>
-                                                <option value="chef" <?= $usuario['rol'] == 'chef' ? 'selected' : '' ?>>Chef</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-success">Guardar Cambios</button>
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+    <div class="content-wrapper">
+        <!-- Encabezado de la página -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Gestión de Usuarios</h1>
                     </div>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-
-        <!-- Modal para crear usuario -->
-        <div class="modal fade" id="crearUsuarioModal" tabindex="-1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form action="/usuarios/crear" method="POST">
-                        <div class="modal-body">
-                            <div class="mb-3">
-                                <label for="nombre" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" name="nombre" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="correo" class="form-label">Correo</label>
-                                <input type="email" class="form-control" name="correo" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="rol" class="form-label">Rol</label>
-                                <select class="form-control" name="rol" required>
-                                    <option value="administrador">Administrador</option>
-                                    <option value="mesero">Mesero</option>
-                                    <option value="chef">Chef</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="contraseña" class="form-label">Contraseña</label>
-                                <input type="password" class="form-control" name="contraseña" required>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Crear Usuario</button>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        </div>
-                    </form>
-
                 </div>
             </div>
-        </div>
+        </section>
+
+        <!-- Contenido principal -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"><i class="fas fa-users"></i> Lista de Usuarios</h3>
+                        <div class="card-tools">
+                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#crearUsuarioModal">
+                                <i class="fas fa-user-plus"></i> Nuevo Usuario
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Tabla de usuarios -->
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="tablaUsuarios" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nombre</th>
+                                        <th>Correo</th>
+                                        <th>Rol</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($data['usuarios'] as $usuario): ?>
+                                        <tr>
+                                            <td><?= $usuario['id_usuario'] ?></td>
+                                            <td><?= $usuario['nombre'] ?></td>
+                                            <td><?= $usuario['correo'] ?></td>
+                                            <td><?= ucfirst($usuario['rol']) ?></td>
+                                            <td>
+                                                <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editarUsuarioModal<?= $usuario['id_usuario'] ?>">
+                                                    <i class="fas fa-edit"></i> Editar
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <!-- Modal para editar usuario -->
+                                        <?php include __DIR__ . '/modals/editar_usuario.php'; ?>
+                                    <?php endforeach; ?>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nombre</th>
+                                        <th>Correo</th>
+                                        <th>Rol</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Modal para crear usuario -->
+    <?php include __DIR__ . '/modals/crear_usuario.php'; ?>
+
+    <!-- Pie de página -->
+    <?php include __DIR__ . '/../partials/footer.php'; ?>
+
+    <!-- jQuery -->
+    <script src="/dist/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="/dist/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables -->
+    <script src="/dist/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="/dist/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/dist/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="/dist/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="/dist/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="/dist/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="/dist/js/adminlte.min.js"></script>
+    <script>
+        // Inicializar DataTables
+        $(document).ready(function () {
+            $('#tablaUsuarios').DataTable({
+                responsive: true,
+                autoWidth: false,
+                language: {
+                    url: "/dist/plugins/datatables/i18n/es_es.json"
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
