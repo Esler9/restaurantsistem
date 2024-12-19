@@ -10,11 +10,11 @@
         <!-- Usuario logueado -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="/dist/images/user-default.png" class="img-circle elevation-2" alt="Usuario">
+                <img src="/dist/images/user-default.jpg" class="img-circle elevation-2" alt="Usuario">
             </div>
             <div class="info">
                 <a href="/perfil" class="d-block">
-                    <?= htmlspecialchars($_SESSION['usuario']['nombre'] ?? 'Invitado'); ?>
+                    <?= htmlspecialchars($_SESSION['usuario_nombre'] ?? 'Invitado'); ?>
                 </a>
             </div>
         </div>

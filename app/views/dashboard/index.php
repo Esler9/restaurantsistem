@@ -1,6 +1,6 @@
 <?php
 // Validar que la sesión esté activa
-require_once __DIR__ . '/app/views/partials/validar_sesion.php';
+require_once __DIR__ . '/../partials/validar_sesion.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -14,10 +14,10 @@ require_once __DIR__ . '/app/views/partials/validar_sesion.php';
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
         <!-- Barra de navegación -->
-        <?php include __DIR__ . '../partials/navbar.php'; ?>
+        <?php include __DIR__ . '/../partials/navbar.php'; ?>
 
         <!-- Menú lateral -->
-        <?php include __DIR__ . '../partials/sidebar.php'; ?>
+        <?php include __DIR__ . '/../partials/sidebar.php'; ?>
 
         <!-- Contenido principal -->
         <div class="content-wrapper">
@@ -110,7 +110,7 @@ require_once __DIR__ . '/app/views/partials/validar_sesion.php';
         </div>
 
         <!-- Pie de página -->
-        <?php include __DIR__ . '../partials/footer.php'; ?>
+        <?php include __DIR__ . '/../partials/footer.php'; ?>
     </div>
    
 </body>
