@@ -11,14 +11,13 @@ class producto
     }
 
     // Registrar un nuevo producto
-    public function registrar($nombre, $descripcion, $precio, $stock, $categoria_id) {
+    public function crear($nombre, $descripcion, $precio, $categoria_id) {
         try {
             // Construir la consulta SQL
             $sql = "INSERT INTO productos (nombre, descripcion, precio, stock, categoria_id) 
                     VALUES ('" . addslashes($nombre) . "', 
                             '" . addslashes($descripcion) . "', 
                             '" . addslashes($precio) . "', 
-                            '" . addslashes($stock) . "', 
                             '" . addslashes($categoria_id) . "')";
 
             // Ejecutar directamente la consulta

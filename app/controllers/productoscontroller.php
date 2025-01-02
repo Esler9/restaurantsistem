@@ -13,17 +13,16 @@ class productoscontroller extends controller {
             $nombre = trim($_POST['nombre']);
             $descripcion = trim($_POST['descripcion']);
             $precio = trim($_POST['precio']);
-            $stock = trim($_POST['stock']);
             $categoria_id = trim($_POST['categoria_id']);
 
             // Validar que los campos no estén vacíos
-            if (empty($nombre) || empty($descripcion) || empty($precio) || empty($stock) || empty($categoria_id)) {
+            if (empty($nombre) || empty($descripcion) || empty($precio) || empty($categoria_id)) {
                 die('Todos los campos son obligatorios.');
             }
 
             // Llamar al modelo para registrar el producto
             $productoModel = $this->model('producto');
-            $registrado = $productoModel->registrar($nombre, $descripcion, $precio, $stock, $categoria_id);
+            $registrado = $productoModel->registrar($nombre, $descripcion, $precio,$categoria_id);
 
             if ($registrado) {
                 header('Location: /productos'); // Redirigir a la lista de productos

@@ -57,7 +57,6 @@ require_once __DIR__ . '/../partials/validar_sesion.php';
                                             <th>Nombre</th>
                                             <th>Descripción</th>
                                             <th>Precio</th>
-                                            <th>Stock</th>
                                             <th>Categoría</th>
                                             <th>Acciones</th>
                                         </tr>
@@ -69,7 +68,6 @@ require_once __DIR__ . '/../partials/validar_sesion.php';
                                                 <td><?php echo htmlspecialchars($producto['nombre']); ?></td>
                                                 <td><?php echo htmlspecialchars($producto['descripcion']); ?></td>
                                                 <td><?php echo number_format($producto['precio'], 2); ?></td>
-                                                <td><?php echo $producto['stock']; ?></td>
                                                 <td><?php echo $producto['categoria_id']; ?></td>
                                                 <td>
                                                     <a href="editar.php?id_producto=<?php echo $producto['id_producto']; ?>" class="btn btn-warning btn-sm" title="Editar">
