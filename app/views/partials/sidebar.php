@@ -39,11 +39,28 @@
                 </li>
 
                 <!-- Gestión de productos -->
-                <li class="nav-item">
-                    <a href="/productos" class="nav-link">
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-boxes"></i>
-                        <p>Gestión de Productos</p>
+                        <p>
+                            Gestión de Productos
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/productos" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Productos</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/ingredientes" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Ingredientes</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <!-- Ventas -->
