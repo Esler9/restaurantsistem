@@ -45,7 +45,7 @@ require_once __DIR__ . '/../partials/validar_sesion.php';
                             <a href="crear.php" class="btn btn-primary">Agregar Producto</a>
                         </div>
                         <div class="card-body">
-                            <table class="table table-bordered table-hover">
+                            <table id="productosTable" class="table table-bordered table-hover dt-responsive nowrap" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -83,6 +83,22 @@ require_once __DIR__ . '/../partials/validar_sesion.php';
 </div>
 
 <?php include __DIR__ . '/../partials/footer.php'; ?>
+<script src="/dist/plugins/jquery/jquery.min.js"></script>
+<script src="/dist/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/dist/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/dist/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="/dist/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/dist/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="/dist/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="/dist/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
 <script src="../../dist/js/adminlte.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#productosTable').DataTable({
+            responsive: true,
+            autoWidth: false
+        });
+    });
+</script>
 </body>
 </html>
