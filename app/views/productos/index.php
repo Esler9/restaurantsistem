@@ -3,10 +3,6 @@
 // Validar sesión 
 require_once __DIR__ . '/../partials/validar_sesion.php';
 
-require_once '../../models/producto.php';
-
-$productoModel = new producto();
-$productos = $productoModel->listar();
 ?>
 
 <!DOCTYPE html>
