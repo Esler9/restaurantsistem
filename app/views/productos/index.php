@@ -44,7 +44,7 @@ require_once __DIR__ . '/../partials/validar_sesion.php';
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <a href="crear.php" class="btn btn-primary">Agregar Producto</a>
+                                <a href="crear.php" class="btn btn-primary" data-target="#crearProductoModal" >Agregar Producto</a>
                             </div>
                             <div class="card-body">
                                 <table id="productosTable" class="table table-bordered table-hover dt-responsive nowrap" style="width:100%">
