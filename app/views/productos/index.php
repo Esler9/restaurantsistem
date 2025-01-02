@@ -1,10 +1,7 @@
 <?php
 
-echo "funciona hasta aqui";
-// Validar sesión y cargar archivos necesarios
-include '../partials/validar_sesion.php';
-include '../partials/navbar.php';
-include '../partials/sidebar.php';
+// Validar sesión 
+require_once __DIR__ . '/../partials/validar_sesion.php';
 
 require_once '../../models/producto.php';
 
@@ -22,6 +19,11 @@ $productos = $productoModel->listar();
 </head>
 <body>
 <div class="content-wrapper">
+     <!-- Barra de navegación -->
+     <?php include __DIR__ . '/../partials/navbar.php'; ?>
+
+<!-- Menú lateral -->
+<?php include __DIR__ . '/../partials/sidebar.php'; ?>
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -78,7 +80,7 @@ $productos = $productoModel->listar();
     </div>
 </div>
 
-<?php include '../partials/footer.php'; ?>
+<?php include __DIR__ . '/../partials/footer.php'; ?>
 <script src="../../dist/js/adminlte.min.js"></script>
 </body>
 </html>
