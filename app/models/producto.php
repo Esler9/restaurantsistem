@@ -11,29 +11,34 @@ class producto
     }
 
     // Registrar un nuevo producto
-    public function registrar($nombre, $descripcion, $precio,$categoria_id) {
+    public function registrar($nombre, $descripcion, $precio, $categoria_id)
+    {
         try {
             // Construir la consulta SQL
-            $sql = "INSERT INTO productos (nombre, descripcion, precio, stock, categoria_id) 
-                    VALUES ('" . addslashes($nombre) . "', 
-                            '" . addslashes($descripcion) . "', 
-                            '" . addslashes($precio) . "', 
-                            '" . addslashes($categoria_id) . "')";
+            $sql = "INSERT INTO productos (nombre, descripcion, precio, categoria_id) 
+                    VALUES (:nombre, :descripcion, :precio, :categoria_id)";
 
-            // Ejecutar directamente la consulta
-            $resultado = $this->db->query($sql);
+            // Preparar la consulta
+            $stmt = $this->db->prepare($sql);
 
-            // Verificar si se ejecutó correctamente
-            if (!$resultado) {
+            // Asignar parámetros
+            $stmt->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+            $stmt->bindParam(':descripcion', $descripcion, PDO::PARAM_STR);
+            $stmt->bindParam(':precio', $precio, PDO::PARAM_STR);
+            $stmt->bindParam(':categoria_id', $categoria_id, PDO::PARAM_INT);
+
+            // Ejecutar la consulta
+            if ($stmt->execute()) {
+                return true; // Registro exitoso
+            } else {
                 throw new Exception('Error al registrar el producto.');
             }
-
-            return true; // Registro exitoso
         } catch (Exception $e) {
             // Mostrar mensaje de error
             die('Error al registrar producto: ' . $e->getMessage());
         }
     }
+
 
     // Obtener un producto por ID
     public function obtenerPorId($id_producto)
