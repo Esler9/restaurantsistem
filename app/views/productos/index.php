@@ -70,24 +70,28 @@ require_once __DIR__ . '/../partials/validar_sesion.php';
                                                 <td><?php echo number_format($producto['precio'], 2); ?></td>
                                                 <td><?php echo $producto['categoria_id']; ?></td>
                                                 <td>
-                                                    <a href="editar.php?id_producto=<?php echo $producto['id_producto']; ?>" class="btn btn-warning btn-sm" title="Editar">
+                                                    <button
+                                                        class="btn btn-warning btn-sm"
+                                                        data-toggle="modal"
+                                                        data-target="#editarProductoModal"
+                                                        onclick="cargarDatosEnModal(
+                        '<?php echo $producto['id_producto']; ?>',
+                        '<?php echo htmlspecialchars($producto['nombre']); ?>',
+                        '<?php echo htmlspecialchars($producto['descripcion']); ?>',
+                        '<?php echo number_format($producto['precio'], 2); ?>',
+                        '<?php echo $producto['categoria_id']; ?>'
+                    )">
                                                         <i class="fas fa-edit"></i>
-                                                    </a>
-                                                    <a href="eliminar.php?id_producto=<?php echo $producto['id_producto']; ?>" class="btn btn-danger btn-sm" title="Eliminar" onclick="return confirm('¿Estás seguro de eliminar este producto?');">
+                                                    </button>
+                                                    <a href="eliminar.php?id_producto=<?php echo $producto['id_producto']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este producto?');">
                                                         <i class="fas fa-trash"></i>
                                                     </a>
-                                                    <a href="ingredientes.php?id_producto=<?php echo $producto['id_producto']; ?>" class="btn btn-info btn-sm" title="Ver Ingredientes">
-                                                        <i class="fas fa-eye"></i>
-                                                    </a>
-                                                    <a href="editar_ingredientes.php?id_producto=<?php echo $producto['id_producto']; ?>" class="btn btn-success btn-sm" title="Editar Ingredientes">
-                                                        <i class="fas fa-utensils"></i>
-                                                    </a>
                                                 </td>
-
                                             </tr>
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>
+
                             </div>
                         </div>
                     </div>
@@ -99,6 +103,7 @@ require_once __DIR__ . '/../partials/validar_sesion.php';
     <?php
     //Modales
     include("modals/crear_producto.php");
+    include("modals/editar_producto.php");
     include __DIR__ . '/../partials/footer.php'; ?>
     <script src="/dist/plugins/jquery/jquery.min.js"></script>
     <script src="/dist/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
