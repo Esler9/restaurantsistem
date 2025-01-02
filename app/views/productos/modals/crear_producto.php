@@ -26,6 +26,7 @@
                         <label for="categoria_id">Categoría</label>
                         <select class="form-control" id="categoria_id" name="categoria_id" required>
                             <option value="">Seleccione una categoría</option>
+                            <option value="1">Comida Rapida</option>
                             <!-- Agregar dinámicamente las categorías desde la base de datos -->
                         </select>
                     </div>
