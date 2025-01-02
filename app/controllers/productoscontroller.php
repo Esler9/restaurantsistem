@@ -44,7 +44,7 @@ class productoscontroller extends controller {
             $categoria_id = $_POST['categoria_id'];
 
             $productoModel = $this->model('producto');
-            $productoModel->actualizar($id_producto, $nombre, $descripcion, $precio, $stock, $categoria_id);
+            $productoModel->actualizar($id_producto, $nombre, $descripcion, $precio,  $categoria_id);
             header('Location: /productos');
             exit;
         }

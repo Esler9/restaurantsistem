@@ -8,7 +8,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="editar.php" method="POST">
+            <form action="productos/editar" method="POST">
                 <div class="modal-body">
                     <input type="hidden" id="id_producto" name="id_producto" value="">
                     <div class="form-group">

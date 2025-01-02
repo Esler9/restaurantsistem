@@ -50,16 +50,15 @@ class producto
     }
 
     // Actualizar un producto
-    public function actualizar($id_producto, $nombre, $descripcion, $precio, $stock, $categoria_id)
+    public function actualizar($id_producto, $nombre, $descripcion, $precio, $categoria_id)
     {
-        $sql = "UPDATE productos SET nombre = :nombre, descripcion = :descripcion, precio = :precio, stock = :stock, categoria_id = :categoria_id WHERE id_producto = :id_producto";
+        $sql = "UPDATE productos SET nombre = :nombre, descripcion = :descripcion, precio = :precio,  categoria_id = :categoria_id WHERE id_producto = :id_producto";
         $stmt = $this->db->prepare($sql);
         return $stmt->execute([
             'id_producto' => $id_producto,
             'nombre' => $nombre,
             'descripcion' => $descripcion,
             'precio' => $precio,
-            'stock' => $stock,
             'categoria_id' => $categoria_id
         ]);
     }
