@@ -13,10 +13,10 @@
 </head>
 <body>
     <!-- Barra de navegación -->
-    <?php include '../partials/navbar.php'; ?>
+    <?php include __DIR__ . '/../partials/navbar.php'; ?>
 
     <!-- Menú lateral -->
-    <?php include '../partials/sidebar.php'; ?>
+    <?php include __DIR__ . '/../partials/sidebar.php'; ?>
 
     <div class="content-wrapper">
         <div class="content-header">
