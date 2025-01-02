@@ -4,7 +4,6 @@ class productoscontroller extends controller {
     public function index() {
         $productoModel = $this->model('producto');
         $productos = $productoModel->listar();
-        echo "funciona hasta aqui";
         $this->view('productos/index', ['productos' => $productos]);
     }
 

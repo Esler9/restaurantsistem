@@ -1,4 +1,6 @@
 <?php
+
+echo "funciona hasta aqui";
 // Validar sesión y cargar archivos necesarios
 include '../partials/validar_sesion.php';
 include '../partials/navbar.php';
