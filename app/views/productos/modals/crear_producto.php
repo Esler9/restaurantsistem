@@ -8,7 +8,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="crear.php" method="POST">
+            <form action="productos/crear.php" method="POST">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
