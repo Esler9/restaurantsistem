@@ -44,7 +44,10 @@ require_once __DIR__ . '/../partials/validar_sesion.php';
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <a href="crear.php" class="btn btn-primary" data-target="#crearProductoModal" >Agregar Producto</a>
+                                <!-- Botón para abrir el modal -->
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#crearProductoModal">
+                                    Crear Producto
+                                </button>
                             </div>
                             <div class="card-body">
                                 <table id="productosTable" class="table table-bordered table-hover dt-responsive nowrap" style="width:100%">
@@ -97,7 +100,7 @@ require_once __DIR__ . '/../partials/validar_sesion.php';
 
     <?php
     //Modales
-    include ("modals/crear_producto.php");
+    include("modals/crear_producto.php");
     include __DIR__ . '/../partials/footer.php'; ?>
     <script src="/dist/plugins/jquery/jquery.min.js"></script>
     <script src="/dist/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
