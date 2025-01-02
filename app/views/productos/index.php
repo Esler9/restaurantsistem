@@ -1,13 +1,13 @@
 <?php
-// Incluir la validación de sesión y otros componentes necesarios
+// Validar sesión y cargar archivos necesarios
 include '../partials/validar_sesion.php';
 include '../partials/navbar.php';
 include '../partials/sidebar.php';
 
-// Cargar el modelo de productos
-include '../../models/producto.php';
+require_once '../../models/producto.php';
 
-$productos = Producto::obtenerTodos();
+$productoModel = new producto();
+$productos = $productoModel->listar();
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +15,7 @@ $productos = Producto::obtenerTodos();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administrar Productos</title>
+    <title>Gestión de Productos</title>
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
 </head>
 <body>
@@ -24,7 +24,7 @@ $productos = Producto::obtenerTodos();
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Administración de Productos y Recetas</h1>
+                    <h1 class="m-0">Gestión de Productos</h1>
                 </div>
             </div>
         </div>
@@ -47,21 +47,22 @@ $productos = Producto::obtenerTodos();
                                         <th>Descripción</th>
                                         <th>Precio</th>
                                         <th>Stock</th>
+                                        <th>Categoría</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($productos as $producto): ?>
                                     <tr>
-                                        <td><?php echo $producto['id']; ?></td>
-                                        <td><?php echo $producto['nombre']; ?></td>
-                                        <td><?php echo $producto['descripcion']; ?></td>
-                                        <td><?php echo $producto['precio']; ?></td>
+                                        <td><?php echo $producto['id_producto']; ?></td>
+                                        <td><?php echo htmlspecialchars($producto['nombre']); ?></td>
+                                        <td><?php echo htmlspecialchars($producto['descripcion']); ?></td>
+                                        <td><?php echo number_format($producto['precio'], 2); ?></td>
                                         <td><?php echo $producto['stock']; ?></td>
+                                        <td><?php echo $producto['categoria_id']; ?></td>
                                         <td>
-                                            <a href="editar.php?id=<?php echo $producto['id']; ?>" class="btn btn-warning btn-sm">Editar</a>
-                                            <a href="eliminar.php?id=<?php echo $producto['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este producto?');">Eliminar</a>
-                                            <a href="ingredientes.php?producto_id=<?php echo $producto['id']; ?>" class="btn btn-info btn-sm">Ver Ingredientes</a>
+                                            <a href="editar.php?id_producto=<?php echo $producto['id_producto']; ?>" class="btn btn-warning btn-sm">Editar</a>
+                                            <a href="eliminar.php?id_producto=<?php echo $producto['id_producto']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este producto?');">Eliminar</a>
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>

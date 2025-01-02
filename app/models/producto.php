@@ -1,54 +1,78 @@
 <?php
-class Producto {
-    private static function conectar() {
-        include '../../config/database.php';
-        return $conexion;
+class producto
+{
+    private $db;
+
+    public function __construct()
+    {
+        require_once 'config/database.php';
+        global $conn; // Variable definida en database.php
+        $this->db = $conn;
     }
 
-    // Obtener todos los productos
-    public static function obtenerTodos() {
-        $conexion = self::conectar();
+    // Registrar un nuevo producto
+    public function registrar($nombre, $descripcion, $precio, $stock, $categoria_id) {
+        try {
+            // Construir la consulta SQL
+            $sql = "INSERT INTO productos (nombre, descripcion, precio, stock, categoria_id) 
+                    VALUES ('" . addslashes($nombre) . "', 
+                            '" . addslashes($descripcion) . "', 
+                            '" . addslashes($precio) . "', 
+                            '" . addslashes($stock) . "', 
+                            '" . addslashes($categoria_id) . "')";
+
+            // Ejecutar directamente la consulta
+            $resultado = $this->db->query($sql);
+
+            // Verificar si se ejecutó correctamente
+            if (!$resultado) {
+                throw new Exception('Error al registrar el producto.');
+            }
+
+            return true; // Registro exitoso
+        } catch (Exception $e) {
+            // Mostrar mensaje de error
+            die('Error al registrar producto: ' . $e->getMessage());
+        }
+    }
+
+    // Obtener un producto por ID
+    public function obtenerPorId($id_producto)
+    {
+        $sql = "SELECT * FROM productos WHERE id_producto = :id_producto";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['id_producto' => $id_producto]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    // Actualizar un producto
+    public function actualizar($id_producto, $nombre, $descripcion, $precio, $stock, $categoria_id)
+    {
+        $sql = "UPDATE productos SET nombre = :nombre, descripcion = :descripcion, precio = :precio, stock = :stock, categoria_id = :categoria_id WHERE id_producto = :id_producto";
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute([
+            'id_producto' => $id_producto,
+            'nombre' => $nombre,
+            'descripcion' => $descripcion,
+            'precio' => $precio,
+            'stock' => $stock,
+            'categoria_id' => $categoria_id
+        ]);
+    }
+
+    // Listar todos los productos
+    public function listar()
+    {
         $sql = "SELECT * FROM productos";
-        $resultado = $conexion->query($sql);
-        return $resultado->fetch_all(MYSQLI_ASSOC);
-    }
-
-    // Obtener un producto por su ID
-    public static function obtenerPorId($id) {
-        $conexion = self::conectar();
-        $sql = "SELECT * FROM productos WHERE id = ?";
-        $stmt = $conexion->prepare($sql);
-        $stmt->bind_param('i', $id);
-        $stmt->execute();
-        $resultado = $stmt->get_result();
-        return $resultado->fetch_assoc();
-    }
-
-    // Crear un nuevo producto
-    public static function crear($data) {
-        $conexion = self::conectar();
-        $sql = "INSERT INTO productos (nombre, descripcion, precio, stock, categoria_id) VALUES (?, ?, ?, ?, ?)";
-        $stmt = $conexion->prepare($sql);
-        $stmt->bind_param('ssdii', $data['nombre'], $data['descripcion'], $data['precio'], $data['stock'], $data['categoria_id']);
-        return $stmt->execute();
-    }
-
-    // Actualizar un producto existente
-    public static function actualizar($id, $data) {
-        $conexion = self::conectar();
-        $sql = "UPDATE productos SET nombre = ?, descripcion = ?, precio = ?, stock = ?, categoria_id = ? WHERE id = ?";
-        $stmt = $conexion->prepare($sql);
-        $stmt->bind_param('ssdiii', $data['nombre'], $data['descripcion'], $data['precio'], $data['stock'], $data['categoria_id'], $id);
-        return $stmt->execute();
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     // Eliminar un producto
-    public static function eliminar($id) {
-        $conexion = self::conectar();
-        $sql = "DELETE FROM productos WHERE id = ?";
-        $stmt = $conexion->prepare($sql);
-        $stmt->bind_param('i', $id);
-        return $stmt->execute();
+    public function eliminar($id_producto)
+    {
+        $sql = "DELETE FROM productos WHERE id_producto = :id_producto";
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute(['id_producto' => $id_producto]);
     }
 }
-?>
