@@ -5,6 +5,7 @@ class productoscontroller extends controller {
         $productoModel = $this->model('producto');
         $productos = $productoModel->listar();
         $this->view('productos/index', ['productos' => $productos]);
+        echo "funciona hasta aqui";
     }
 
     // Crear un nuevo producto
