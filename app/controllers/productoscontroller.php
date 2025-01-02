@@ -1,11 +1,11 @@
 <?php
-class ProductosController {
+class ProductosController extends controller{
 
     // Mostrar todos los productos
     public function index() {
-       // include_once '../../models/producto.php';
-        //$productos = Producto::obtenerTodos();
-        include '../../views/productos/index.php';
+        include_once '../../models/producto.php';
+        $productos = Producto::obtenerTodos();
+        $this->view('productos/index', ['productos' => $productos]);
     }
 
     // Mostrar formulario para crear un nuevo producto
@@ -74,8 +74,8 @@ class ProductosController {
         include_once '../../models/producto.php';
         include_once '../../models/ingrediente.php';
 
-        $producto = Producto::obtenerPorId($producto_id);
-        $ingredientes = Ingrediente::obtenerPorProductoId($producto_id);
+       // $producto = Producto::obtenerPorId($producto_id);
+       // $ingredientes = Ingrediente::obtenerPorProductoId($producto_id);
 
         include '../../views/productos/ingredientes.php';
     }
