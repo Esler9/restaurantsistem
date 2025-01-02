@@ -95,7 +95,10 @@ require_once __DIR__ . '/../partials/validar_sesion.php';
         </div>
     </div>
 
-    <?php include __DIR__ . '/../partials/footer.php'; ?>
+    <?php
+    //Modales
+    include ("modals/crear_producto.php");
+    include __DIR__ . '/../partials/footer.php'; ?>
     <script src="/dist/plugins/jquery/jquery.min.js"></script>
     <script src="/dist/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/dist/plugins/datatables/jquery.dataTables.min.js"></script>
