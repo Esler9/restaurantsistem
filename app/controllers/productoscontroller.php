@@ -3,8 +3,8 @@ class ProductosController {
 
     // Mostrar todos los productos
     public function index() {
-        include_once '../../models/producto.php';
-        $productos = Producto::obtenerTodos();
+       // include_once '../../models/producto.php';
+        //$productos = Producto::obtenerTodos();
         include '../../views/productos/index.php';
     }
 
