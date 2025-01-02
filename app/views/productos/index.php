@@ -14,12 +14,13 @@ require_once __DIR__ . '/../partials/validar_sesion.php';
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
 </head>
 <body>
-<div class="content-wrapper">
      <!-- Barra de navegación -->
      <?php include __DIR__ . '/../partials/navbar.php'; ?>
 
 <!-- Menú lateral -->
 <?php include __DIR__ . '/../partials/sidebar.php'; ?>
+<div class="content-wrapper">
+    
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -52,7 +53,7 @@ require_once __DIR__ . '/../partials/validar_sesion.php';
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($productos as $producto): ?>
+                                    <?php foreach ($data["productos"] as $producto): ?>
                                     <tr>
                                         <td><?php echo $producto['id_producto']; ?></td>
                                         <td><?php echo htmlspecialchars($producto['nombre']); ?></td>
